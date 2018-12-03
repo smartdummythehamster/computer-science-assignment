@@ -1,0 +1,142 @@
+# complete the example and description for this function
+# then test it
+def initialize_board() -> list:
+  """
+  Return a list of strings representing a checkers board, where 1 represents pieces of one player, 2 represents pieces of the other player and 0 representing the free spaces; also including spaces between the numbers in strings which would represent the empty spaes. 
+  >>> initialize_board(Player 1)
+  [" 1 1 1 1", "1 1 1 1 ", " 1 1 1 1"]
+  """ 
+  b = [" 1 1 1 1", "1 1 1 1 ", " 1 1 1 1", "0 0 0 0 ", " 0 0 0 0", "2 2 2 2 ", " 2 2 2 2", "2 2 2 2 "]
+  return b
+
+# write this function according to the function design recipe
+def display_board(board:list) -> str:
+  """
+  Return a checkers board indeting each string in the list. Each string should be on a new line; keeping all 1s, 0s, 2s, and spaces.
+  >>> display_board(b)
+  " 1 1 1 1
+  1 1 1 1 
+   1 1 1 1
+  0 0 0 0 
+   0 0 0 0
+  2 2 2 2 
+   2 2 2 2
+  2 2 2 2"
+  """ 
+  s = ""
+  for line in board:
+    s += line + "\n"
+  return s
+
+# write this function according to the function design recipe
+def valid_piece(board:list, piece:str) -> bool:
+  """
+  Return true if and only if the player selected a valid piece; the piece should be located on his part of the board, and should belong to him. Let row be i=0,1,2,3,4,5,6,7 and column be j=0,1,2,3,4,5,6,7. 
+  >>> valid_piece(b, '21')
+  True
+  >>> valid_piece(b, '30')
+  False
+  >>> valid_piece(b, '52')
+  False
+  """
+  row = board[i] 
+  if row [j] != 0:
+    return True
+  else:
+    return False 
+
+# write this function according to the function design recipe
+def valid_move(board:list, move:str, piece:str) -> bool:
+  """
+  Return true if and only if moving the piece at position piece to postiion move is a valid checkers move on board.
+  >>> b = intialize_board()
+  >>> valid_move(b,'41','50')
+  True
+  >>> valid_move(b,'51','61')
+  False 
+  """
+  i = int(piece(0))
+  j = int(piece(1))
+
+  k = int(piece(0))
+  l = int(piece(1))
+  piece = b[i]
+  move = b[k]
+  if row[j] == 1:
+    if move[l] == 0:
+      if k-i == 1 and (l-i == 0 or l-i == 0 or l-i == 1):
+        return True 
+  if row [j] == 2:
+    if move [l] == 0:
+      if k-i == -1 and (l-i == 0 or l-i == 0 or l-i == 1):
+        return True
+  else:
+        return False 
+
+# write examples for this function, then complete the code body
+# and test it.
+def update_board(board:list, move:str, piece:str, player:int) -> bool:
+  """
+  Update board by moving piece to move. Return True if and only if the opposing player (the one that is not moving a piece) has no valid moves after updating the game.
+  """
+  i = int(piece(0))
+  j = int(piece(1))
+  
+  k = int(piece(0))
+  l = int(piece(1))
+
+  piece = b[i]
+  move= b[k]
+  length = len(board)
+  if valid_piece (board, piece):
+    if valid_move (board, move, piece):
+      temp_var = move [l]
+      move [l] = piece [j]
+      piece [j] = temp_var
+      update_player(player)
+      for row_num in range (list_length):
+        list_element_length = len(opposing_piece_row_string)
+        for col_num in range (list_element_length):
+          opposing_piece = str (row_num) + str (col_num)
+          if valid_piece (board, opposing_move, opposing_piece):
+            for row_num2 in range (length):
+              for col_num2 in range (list_element_length):
+                opposing_move = str (row_num2) + str (col_num2)
+                if valid_move (board, opposing_move, opposing_piece):
+                  if player == player: 1 and opposing_piece_row[col_num] == '1'
+                  if player == player: 2 and opposing_piece_row[col_num] == '2'
+                  update_player(player)
+                  return True
+  return False
+
+# write this function according to the function design recipe.
+def update_player(player) -> int:
+  """
+  Return an updated player, by switching from the first player to the second one and let the second player make their move. 
+  >>> unpdate_player('player 1')
+  'player 2'
+  """
+  if player == 1:
+    player = 2
+  else:
+    player = 1
+
+if __name__ == "__main__":
+    board = initialize_board()
+    player = 1
+    gameover = False
+    while not gameover:
+        print(display_board(board))
+        piece = input("Player {}, which piece would you like to move?".format(player))
+        while not valid_piece(board, piece):
+            piece = input("Player {}, pick a valid piece".format(player))
+        move = input("Player {}, where would you like to move the piece at {}?".format(player, piece))
+        while not valid_move(board, move, piece):
+            move = input("Player {}, pick a valid move for the piece at {}.".format(player, piece))
+        gameover = update_board(board, move, piece, player)
+        player = update_player(player)
+    player = update_player(player)
+    print("Game over, player {} wins!".format(player)) 
+    
+    
+    #this assignment took me 15 hours: 5 h with tutor, 5 h with my step-dad and 5 h by myself; also a lot of my patience :)
